@@ -52,7 +52,7 @@
         .links a {
             color: var(--text-main);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             padding: 8px 16px;
             border: 1px solid var(--text-muted);
             border-radius: 4px;
@@ -65,20 +65,51 @@
             background: rgba(56, 189, 248, 0.1);
         }
 
+        /* Tabs Navigation */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 40px auto 20px auto;
+            border-bottom: 2px solid var(--card-bg);
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
         main {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        section {
-            margin-bottom: 50px;
+        /* Tab Content Toggling */
+        .tab-content {
+            display: none;
         }
 
-        h2 {
-            border-bottom: 2px solid var(--card-bg);
-            padding-bottom: 8px;
-            color: var(--text-main);
+        .tab-content.active {
+            display: block;
         }
 
         .grid {
@@ -107,14 +138,19 @@
             color: var(--text-main);
         }
 
-        .tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+        /* Placeholder Style */
+        .placeholder-box {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px dashed var(--text-muted);
+        }
+
+        .placeholder-box p {
             color: var(--text-muted);
-            margin-top: 10px;
+            font-style: italic;
+            margin: 0;
         }
     </style>
 </head>
@@ -134,39 +170,74 @@
         </div>
     </header>
 
-    <main>
-        <section id="focus">
-            <h2>Core Expertise</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Technical Focus</h3>
-                    <p>Network architecture, packet analysis, penetration testing, firewall configuration, and secure protocol implementation.</p>
-                    <span class="tag">Cisco / WireShark / Linux</span>
-                </div>
-                <div class="card policy">
-                    <h3>Policy Focus</h3>
-                    <p>Cyber warfare doctrine, international law in cyberspace, critical infrastructure protection, and data privacy regulations.</p>
-                    <span class="tag">Geopolitics / Policy Briefs</span>
-                </div>
-            </div>
-        </section>
+    <!-- Tabs Menu -->
+    <nav class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab(event, 'portfolio')">Portfolio</button>
+        <button class="tab-btn" onclick="openTab(event, 'homelab')">Home Lab</button>
+        <button class="tab-btn" onclick="openTab(event, 'blogs')">Blogs</button>
+        <button class="tab-btn" onclick="openTab(event, 'politics')">Politics</button>
+    </nav>
 
-        <section id="projects">
-            <h2>Featured Projects</h2>
+    <main>
+        <!-- Tab 1: Default Portfolio Content -->
+        <div id="portfolio" class="tab-content active">
             <div class="grid">
                 <div class="card">
                     <h3>Secure Enterprise Network Design</h3>
                     <p>Designed and simulated a multi-subnet corporate network with implemented VLANs, ACLs, and a DMZ using Cisco Packet Tracer.</p>
-                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Project →</a>
                 </div>
                 <div class="card policy">
                     <h3>Analysis of State-Sponsored Cyber Threats</h3>
                     <p>A comprehensive research paper analyzing the geopolitical motivations and technical tactics behind recent APT campaigns.</p>
-                    <a href="#" style="color: var(--accent-alt); text-decoration: none; font-size: 0.9rem;">Read Paper →</a>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- Tab 2: Home Lab -->
+        <div id="homelab" class="tab-content">
+            <div class="placeholder-box">
+                <h3>🛠️ Network & Systems Deployment</h3>
+                <p>Documentation of my server architecture, hypervisors, and routing configurations is currently being compiled. Project repositories and topology diagrams will be published shortly.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Blogs -->
+        <div id="blogs" class="tab-content">
+            <div class="placeholder-box">
+                <h3>✍️ Technical & Policy Writing</h3>
+                <p>Articles exploring technical deep-dives and current events in cyberspace are currently in draft. The publication feed will go live soon.</p>
+            </div>
+        </div>
+
+        <!-- Tab 4: Politics -->
+        <div id="politics" class="tab-content">
+            <div class="placeholder-box">
+                <h3>🏛️ Geopolitical Analysis & Advocacy</h3>
+                <p>Overview of extracurricular focus, policy debate points, and research initiatives regarding digital governance is currently under review for publication.</p>
+            </div>
+        </div>
     </main>
+
+    <!-- JavaScript to Handle Tab Switching -->
+    <script>
+        function openTab(evt, tabId) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active status from all buttons
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show current tab content and add active class to button
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
