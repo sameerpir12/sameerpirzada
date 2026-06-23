@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Cyber Blue */
+            --accent-alt: #f43f5e; /* Alert Red */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px 20px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border: 1px solid var(--text-muted);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .card.policy {
+            border-left-color: var(--accent-alt);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--text-main);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Name</h1>
+        <div class="subtitle">Network Engineering | Cybersecurity | Political Science</div>
+        <p class="bio">
+            Navigating the intersection of secure infrastructure, threat intelligence, and digital geopolitics. 
+            Building resilient networks while analyzing the policies that govern them.
+        </p>
+        <div class="links">
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            <a href="mailto:your.email@example.com">Email</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="focus">
+            <h2>Core Expertise</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Technical Focus</h3>
+                    <p>Network architecture, packet analysis, penetration testing, firewall configuration, and secure protocol implementation.</p>
+                    <span class="tag">Cisco / WireShark / Linux</span>
+                </div>
+                <div class="card policy">
+                    <h3>Policy Focus</h3>
+                    <p>Cyber warfare doctrine, international law in cyberspace, critical infrastructure protection, and data privacy regulations.</p>
+                    <span class="tag">Geopolitics / Policy Briefs</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Secure Enterprise Network Design</h3>
+                    <p>Designed and simulated a multi-subnet corporate network with implemented VLANs, ACLs, and a DMZ using Cisco Packet Tracer.</p>
+                    <a href="#" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Project →</a>
+                </div>
+                <div class="card policy">
+                    <h3>Analysis of State-Sponsored Cyber Threats</h3>
+                    <p>A comprehensive research paper analyzing the geopolitical motivations and technical tactics behind recent APT campaigns.</p>
+                    <a href="#" style="color: var(--accent-alt); text-decoration: none; font-size: 0.9rem;">Read Paper →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
