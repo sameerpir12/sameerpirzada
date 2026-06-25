@@ -10,7 +10,7 @@
             --card-bg: #111f42; /* Slightly Lighter Navy for Contrast */
             --text-main: #ffffff; /* Crisp White Text */
             --text-muted: #94a3b8; /* Muted Slate Text */
-            --accent: #facc15; /* Vibrant Gold/Yellow Accent */
+            --accent: #ef4444; /* Vibrant Gold/Yellow Accent */
             --nav-bg: #070d20; /* Darkest Navy for the Top Bar */
         }
 
@@ -89,16 +89,15 @@
         }
 
         header {
-            max-width: 800px;
-            margin: 40px auto 20px auto;
-            padding: 20px;
-            text-align: center;
-
-            background: rgba(10, 17, 40, 0.7); 
-            backdrop-filter: blur(8px); /* Blurs the moving lines slightly behind the text */
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(250, 204, 21, 0.1); /* Extremely subtle gold border */
-            border-radius: 12px;
+          max-width: 800px;
+          margin: 40px auto 20px auto;
+          padding: 20px;
+          text-align: center;
+          background: rgba(10, 17, 40, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(239, 68, 68, 0.15); /* Updated to matching red with slightly higher visibility */
+          border-radius: 12px;
         }
 
         h1 {
@@ -141,7 +140,7 @@
         .social-links a:hover {
           border-color: var(--accent);
           color: var(--accent);
-          background: rgba(250, 204, 21, 0.05);
+          background: rgba(239, 68, 68, 0.08);
           transform: translateY(-3px); /* Gentle float effect */
         }
 
@@ -317,7 +316,7 @@
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: 0xfacc15,           /* Matches your gold accent: var(--accent) */
+      color: 0xef4444,           /* Matches your gold accent: var(--accent) */
       backgroundColor: 0x0a1128, /* Matches your deep dark navy blue: var(--bg-color) */
       points: 11.00,
       maxDistance: 21.00,
