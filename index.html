@@ -14,14 +14,25 @@
             --nav-bg: #070d20; /* Darkest Navy for the Top Bar */
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: transparent; /* Changed from var(--bg-color) to allow animation to peek through */
+      color: var(--text-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Paste this directly below the body styles */
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Sends the network web animation behind your content cards */
+      pointer-events: none; /* Prevents the canvas from blocking mouse clicks on links */
+    }
 
         /* Top Navigation Bar */
         .top-nav {
@@ -208,7 +219,7 @@
     </style>
 </head>
 <body>
-
+<body style="position: relative;"> <div id="vanta-bg"></div>
     <!-- Sticky Navigation Bar with Tabs at the Top -->
     <nav class="top-nav">
         <div class="nav-container">
@@ -281,7 +292,26 @@
             </div>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xfacc15,           /* Matches your gold accent: var(--accent) */
+      backgroundColor: 0x0a1128, /* Matches your deep dark navy blue: var(--bg-color) */
+      points: 11.00,
+      maxDistance: 21.00,
+      spacing: 16.00
+    })
+  </script>
     <!-- JavaScript to Handle Tab Switching -->
     <script>
         function openTab(evt, tabId) {
