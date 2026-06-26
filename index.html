@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+main <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,6 +41,34 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 40px; /* Space between the image and your text */
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .profile-pic {
+            width: 180px; /* Adjust the size of your headshot */
+            height: 180px;
+            border-radius: 50%; /* Makes the image a clean circle */
+            object-fit: cover; /* Prevents stretching */
+            border: 3px solid var(--accent); /* Adds a border using your accent color */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-text {
+            flex: 1;
+        }
+        
+        /* Responsive design for mobile screens */
+        @media (max-width: 650px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         .nav-container {
@@ -245,17 +273,22 @@
     </nav>
 
     <header>
-        <h1>Sameer Pirzada</h1>
-        <div class="subtitle">Network Engineering // Cybersecurity // Political Science</div>
-        <p class="bio">
-            Navigating the intersection of secure infrastructure, threat intelligence, and digital geopolitics. 
-            Building resilient networks while analyzing the policies that govern them.
-        </p>
-        <div class="social-links">
-          <a href="https://github.com/sameerpir12" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/in/sameerpirzada" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:sameerpir12@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-</div>
+        <section class="profile-container">
+            <img src="DSC08205_Original.JPG" alt="Sameer Pirzada Headshot" class="profile-pic">
+        
+            <div class="profile-text">
+                <h1>Sameer Pirzada</h1>
+                <p style="color: var(--accent); font-weight: 600;">[Networking Engineering, Cybersecurity, Political Science]</p>
+                <p style="color: var(--text-muted);">
+                    [Your bio goes here. Tell the world a bit about what you do, your passions, and your goals!]
+                </p>
+                
+                <div class="social-links" style="margin-top: 20px;">
+                    <a href="#" style="color: var(--text-main); margin-right: 15px; text-decoration: none;">LinkedIn</a>
+                    <a href="#" style="color: var(--text-main); text-decoration: none;">GitHub</a>
+                </div>
+            </div>
+        </section>
     </header>
 
     <main>
