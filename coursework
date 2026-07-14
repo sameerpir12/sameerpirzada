@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameer Pirzada | Portfolio</title>
+    <link rel="icon" type="image/png" href="newPFP (1).png">
+    <style>
+        :root {
+            --bg-color: #0a1128; /* Deep Dark Navy Blue */
+            --card-bg: #111f42; /* Slightly Lighter Navy for Contrast */
+            --text-main: #ffffff; /* Crisp White Text */
+            --text-muted: #94a3b8; /* Muted Slate Text */
+            --accent: #ef4444; /* Vibrant Gold/Yellow Accent */
+            --nav-bg: #070d20; /* Darkest Navy for the Top Bar */
+        }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: transparent; /* Changed from var(--bg-color) to allow animation to peek through */
+      color: var(--text-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Paste this directly below the body styles */
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Sends the network web animation behind your content cards */
+      pointer-events: none; /* Prevents the canvas from blocking mouse clicks on links */
+    }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid rgba(250, 204, 21, 0.2); /* Subtle yellow border */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 40px; /* Space between the image and your text */
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .profile-pic {
+            width: 180px; /* Adjust the size of your headshot */
+            height: 180px;
+            border-radius: 50%; /* Makes the image a clean circle */
+            object-fit: cover; /* Prevents stretching */
+            border: 3px solid var(--accent); /* Adds a border using your accent color */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-text {
+            flex: 1;
+        }
+        
+        /* Responsive design for mobile screens */
+        @media (max-width: 650px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .tabs-menu {
+            display: flex;
+            gap: 5px;
+            height: 100%;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 0 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        header {
+          max-width: 800px;
+          margin: 40px auto 20px auto;
+          padding: 20px;
+          text-align: center;
+          background: rgba(10, 17, 40, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(239, 68, 68, 0.15); /* Updated to matching red with slightly higher visibility */
+          border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto 30px auto;
+            font-size: 1.05rem;
+        }
+
+        .social-links a {
+          color: var(--text-main);
+          text-decoration: none;
+          margin: 0 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 45px;
+          height: 45px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 50%; /* Perfect circles */
+          font-size: 1.2rem; /* Scales up the logos */
+          transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+          border-color: var(--accent);
+          color: var(--accent);
+          background: rgba(239, 68, 68, 0.08);
+          transform: translateY(-3px); /* Gentle float effect */
+        }
+        .course-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 8px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 8px;
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .placeholder-box {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px dashed rgba(250, 204, 21, 0.3);
+        }
+
+        .placeholder-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .placeholder-box p {
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="position: relative;"> 
+    <div id="vanta-bg"></div>
+    <!-- Sticky Navigation Bar with Tabs at the Top -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Sameer Pirzada</a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-tab active">Home</a>
+                <a href="about.html" class="nav-tab">About</a>
+                <a href="projects.html" class="nav-tab">Projects</a>
+                <a href="contact.html" class="nav-tab">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <section class="profile-container">
+            <img src="DSC08205_Original.JPG" alt="Sameer Pirzada Headshot" class="profile-pic">
+        
+            <div class="profile-text">
+                <h1>Sameer Pirzada</h1>
+                <p style="color: var(--accent); font-weight: 600;">
+                    Networking Engineering, Cybersecurity, Political Science 
+                    <span style="color: #CFB991; background-color: #000000; padding: 2px 8px; border-radius: 4px; font-size: 0.95rem; margin-left: 6px; display: inline-block;">@ Purdue University</span>
+                </p>
+                <p style="color: var(--text-muted);">
+                    This site is in it's development stage. Stay tuned for updates.  
+                </p>
+                
+               <div class="social-links">
+                    <a href="https://linkedin.com/in/sameerpirzada" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/sameerpir12" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <!-- Tab 1: Home / Main Portfolio -->
+        <div id="portfolio" class="tab-content active">
+            <h2>Featured Work</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Homelab</h3>
+                    <p>Mock Corporate Environment IT setup - Active Directory, DNS, DHCP</p>
+                    <a href="#" class="project-link">View Project →</a>
+                </div>
+                <div class="card">
+                    <h3>CNIT270</h3>
+                    <p>A comprehensive research paper analyzing the geopolitical motivations and technical tactics behind recent APT campaigns.</p>
+                    <a href="#" class="project-link">Read Paper →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Home Lab -->
+        <div id="homelab" class="tab-content">
+            <h2>Home Lab Deployment</h2>
+            <div class="placeholder-box">
+                <h3>🛠️ Network & Systems Architecture</h3>
+                <p>Documentation of my personal server architecture, hypervisors, and core routing configurations is currently being compiled. Network topology diagrams will be published shortly.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Blogs -->
+        <div id="blogs" class="tab-content">
+            <h2>Technical & Policy Blog</h2>
+            <div class="placeholder-box">
+                <h3>✍️ Threat Intelligence & Policy Analysis</h3>
+                <p>Articles exploring cybersecurity deep-dives and current events in global digital infrastructure are currently in draft. The publication feed will go live soon.</p>
+            </div>
+        </div>
+
+        <!-- Tab 4: Politics -->
+        <div id="politics" class="tab-content">
+            <h2>Political Science & Geopolitics</h2>
+            <div class="placeholder-box">
+                <h3>🏛️ Digital Governance & Sovereign Policy</h3>
+                <p>An overview of extracurricular research, policy brief analyses, and academic initiatives regarding digital governance and cyber-warfare policy is currently under review.</p>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <div id="coursework" class="tab-content" style="display: none; max-width: 800px; margin: 40px auto; padding: 0 20px;">
+    <div class="course-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+        
+        <div class="course-card" style="background-color: var(--card-bg); border: 1px solid rgba(250, 204, 21, 0.1); padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--text-main); margin-top: 0; font-size: 1.1rem;">CNIT 18000: Introduction to Systems Development</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Key projects, system diagrams, and structural design assignments.</p>
+            <div class="pdf-container" style="margin-top: 15px; border-radius: 4px; overflow: hidden; height: 250px; background: #070d20;">
+                <iframe src="pdfs/cnit180_work.pdf" width="100%" height="100%" style="border: none;"></iframe>
+            </div>
+        </div>
+
+        <div class="course-card" style="background-color: var(--card-bg); border: 1px solid rgba(250, 204, 21, 0.1); padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--text-main); margin-top: 0; font-size: 1.1rem;">CNIT 17600: Information Technology Architectures</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Documentation regarding operating systems, networking, and distributed applications.</p>
+            <div class="pdf-container" style="margin-top: 15px; border-radius: 4px; overflow: hidden; height: 250px; background: #070d20;">
+                <iframe src="pdfs/cnit176_work.pdf" width="100%" height="100%" style="border: none;"></iframe>
+            </div>
+        </div>
+
+        <div class="course-card" style="background-color: var(--card-bg); border: 1px solid rgba(250, 204, 21, 0.1); padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--text-main); margin-top: 0; font-size: 1.1rem;">CNIT 27000: Cybersecurity Fundamentals</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Lab documentation focusing on security models, threat mitigation, and compliance frameworks.</p>
+            <div class="pdf-container" style="margin-top: 15px; border-radius: 4px; overflow: hidden; height: 250px; background: #070d20;">
+                <iframe src="pdfs/cnit270_work.pdf" width="100%" height="100%" style="border: none;"></iframe>
+            </div>
+        </div>
+
+        <div class="course-card" style="background-color: var(--card-bg); border: 1px solid rgba(250, 204, 21, 0.1); padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--text-main); margin-top: 0; font-size: 1.1rem;">CNIT 32000: Policy, Regulation, and Globalization in IT</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Analysis and essays regarding international technology laws, ethics, and global policy issues.</p>
+            <div class="pdf-container" style="margin-top: 15px; border-radius: 4px; overflow: hidden; height: 250px; background: #070d20;">
+                <iframe src="pdfs/cnit320_work.pdf" width="100%" height="100%" style="border: none;"></iframe>
+
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xef4444,           /* Matches your gold accent: var(--accent) */
+      backgroundColor: 0x0a1128, /* Matches your deep dark navy blue: var(--bg-color) */
+      points: 11.00,
+      maxDistance: 21.00,
+      spacing: 16.00
+    })
+  </script>
+    <!-- JavaScript to Handle Tab Switching -->
+    <script>
+        function openTab(evt, tabId) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active status from all buttons
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show current tab content and add active class to button
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Smoothly scroll back to just below the header if clicked from far down
+            if(tabId !== 'portfolio') {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+    </script>
+
+</body>
+</html>
